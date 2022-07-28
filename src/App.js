@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Blog from "./components/Blog";
 import blogService from "./services/blogs";
 import loginService from "./services/login";
@@ -16,6 +16,8 @@ const App = () => {
     author: "",
     url: "",
   });
+
+  const blogRef = useRef();
   useEffect(() => {
     blogService.getAll().then((blogs) => setBlogs(blogs));
   }, []);
@@ -73,6 +75,7 @@ const App = () => {
         author: "",
         url: "",
       });
+      blogRef.current.toggleVisibility();
     } catch (exception) {
       console.log(exception);
     }
@@ -105,7 +108,7 @@ const App = () => {
             logout
           </button>
         </h3>
-        <Togglable buttonLabel="new blog">
+        <Togglable buttonLabel="new blog" ref={blogRef}>
           <BlogForm
             handleBlogCreation={handleBlogCreation}
             handleBlogData={handleBlogData}
