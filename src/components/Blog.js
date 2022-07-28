@@ -1,7 +1,10 @@
-const Blog = ({blog}) => (
-  <div>
-    {blog.title} {blog.author}
-  </div>  
-)
+import "./Blog.css";
 
-export default Blog
+const Blog = ({ blog }) => (
+  <div className="blog">
+    <p>title: {blog.title}</p>
+    <p>author: {blog.author}</p>
+  </div>
+);
+
+export default Blog;
