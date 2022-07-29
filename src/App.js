@@ -15,6 +15,7 @@ const App = () => {
     title: "",
     author: "",
     url: "",
+    likes: 0,
   });
 
   const blogRef = useRef();
@@ -80,10 +81,21 @@ const App = () => {
       console.log(exception);
     }
   };
+  // const handleDeleteBtn = async (event, id) => {
+  //   event.preventDefault();
+  //   setBlogs((prevBlogs) => {
+  //     return prevBlogs.filter((blog) => blog.is !== id);
+  //   });
+  //   try {
+  //     await blogService.remove(id);
+  //   } catch (exception) {
+  //     console.log(exception);
+  //   }
+  // };
   const condRendering = () => {
     if (user === null) {
       return (
-        <Togglable buttonLabel="log in">
+        <Togglable buttonLabel0="log in" buttonLabel1="cancel">
           <LoginForm
             handleLogin={handleLogin}
             handleChange={handleChange}
@@ -108,7 +120,7 @@ const App = () => {
             logout
           </button>
         </h3>
-        <Togglable buttonLabel="new blog" ref={blogRef}>
+        <Togglable buttonLabel0="new blog" buttonLabel1="cancel" ref={blogRef}>
           <BlogForm
             handleBlogCreation={handleBlogCreation}
             handleBlogData={handleBlogData}

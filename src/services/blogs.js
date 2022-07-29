@@ -5,7 +5,6 @@ let token = null;
 
 const setToken = (newToken) => {
   token = `bearer ${newToken}`;
-  console.log(token);
 };
 
 const getAll = async () => {
@@ -21,4 +20,13 @@ const create = async (blogObject) => {
   return response.data;
 };
 
-export default { getAll, create, setToken };
+const remove = async (id) => {
+  const config = {
+    headers: { Authorization: token },
+  };
+
+  const response = await axios.delete(`${baseUrl}/${id}`, config);
+  return response.data;
+};
+
+export default { getAll, create, setToken, remove };
