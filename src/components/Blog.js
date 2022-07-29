@@ -15,13 +15,18 @@ const Blog = ({ blog, handleDeleteBtn }) => {
       console.log(exception);
     }
   };
+
+  const deleteBtnClicked = (event) => {
+    event.preventDefault();
+    if (window.confirm(`Do you wan to delete ${blog.title}?`)) {
+      handleDeleteBtn(event, blog.id);
+    }
+  };
   return (
     <div className="blog">
       <div>
         title: {blog.title}
-        <button onClick={(event) => handleDeleteBtn(event, blog.id)}>
-          delete
-        </button>
+        <button onClick={deleteBtnClicked}>delete</button>
         <Togglable buttonLabel0="more" buttonLabel1="less">
           <p>author: {blog.author}</p>
           <p>
