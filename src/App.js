@@ -81,17 +81,17 @@ const App = () => {
       console.log(exception);
     }
   };
-  // const handleDeleteBtn = async (event, id) => {
-  //   event.preventDefault();
-  //   setBlogs((prevBlogs) => {
-  //     return prevBlogs.filter((blog) => blog.is !== id);
-  //   });
-  //   try {
-  //     await blogService.remove(id);
-  //   } catch (exception) {
-  //     console.log(exception);
-  //   }
-  // };
+  const handleDeleteBtn = async (event, id) => {
+    event.preventDefault();
+    setBlogs((prevBlogs) => {
+      return prevBlogs.filter((blog) => blog.id !== id);
+    });
+    try {
+      await blogService.remove(id);
+    } catch (exception) {
+      console.log(exception);
+    }
+  };
   const condRendering = () => {
     if (user === null) {
       return (
@@ -131,7 +131,7 @@ const App = () => {
         </Togglable>
         <br />
         {blogs.map((blog) => (
-          <Blog key={blog.id} blog={blog} />
+          <Blog key={blog.id} blog={blog} handleDeleteBtn={handleDeleteBtn} />
         ))}
       </div>
     );
