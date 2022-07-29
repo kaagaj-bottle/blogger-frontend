@@ -83,12 +83,15 @@ const App = () => {
   };
   const handleDeleteBtn = async (event, id) => {
     event.preventDefault();
-    setBlogs((prevBlogs) => {
-      return prevBlogs.filter((blog) => blog.id !== id);
-    });
+
     try {
-      await blogService.remove(id);
+      const responseObj = await blogService.remove(id);
+
+      setBlogs((prevBlogs) => {
+        return prevBlogs.filter((blog) => blog.id !== id);
+      });
     } catch (exception) {
+      window.alert(`can't delete as this blog was not created by you`);
       console.log(exception);
     }
   };
