@@ -1,20 +1,20 @@
+import { useState } from "react";
 import "./Blog.css";
 import Togglable from "./Togglable";
 import blogService from "../services/blogs";
 const Blog = ({ blog, handleDeleteBtn }) => {
+  const [likes, setLikes] = useState(blog.likes);
   const handleLikeBtn = async (event) => {
     event.preventDefault();
+    try {
+      setLikes((prevLikes) => prevLikes + 1);
+      blog.likes = likes;
+      await blogService.update(blog.id, blog);
+      return;
+    } catch (exception) {
+      console.log(exception);
+    }
   };
-
-  // const handleDeleteBtn = async (event) => {
-  //   event.preventDefault();
-  //   try {
-  //     await blogService.remove(blog.id);
-  //     return null;
-  //   } catch (exception) {
-  //     console.log(exception);
-  //   }
-  // };
   return (
     <div className="blog">
       <div>
