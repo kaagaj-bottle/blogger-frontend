@@ -15,6 +15,10 @@ const getAll = async () => {
   return response.data;
 };
 
+const getUserBlogs = async (username) => {
+  const response = await axios.get(`${baseUrl} / user/${username}}`);
+};
+
 const create = async (blogObject) => {
   const response = await axios.post(baseUrl, blogObject, config);
   return response.data;
@@ -30,4 +34,4 @@ const update = async (id, blogObject) => {
   return response.data;
 };
 
-export default { getAll, create, setToken, remove, update };
+export default { getAll, create, setToken, remove, update, getUserBlogs };

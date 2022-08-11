@@ -1,0 +1,32 @@
+.blog--container {
+  height: auto;
+  margin: 2rem 3rem 3rem 3rem;
+  border: 1px solid black;
+  box-shadow: 10px 5px 5px rgb(99, 96, 96);
+  border-radius: 1rem;
+  padding: 1rem;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.blog--title {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.blog--content {
+  height: auto;
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+}
+
+.author--container {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.blog--author {
+  margin: 0 1rem 0 1rem;
+  padding: 0 1rem 0 1rem;
+  font-weight: bold;
+}

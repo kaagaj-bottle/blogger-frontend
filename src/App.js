@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import Blog from "./components/Blog";
+import BlogBackend from "./components/BlogBackend";
 import blogService from "./services/blogs";
 import loginService from "./services/login";
 import Togglable from "./components/Togglable";
@@ -7,7 +7,9 @@ import LoginForm from "./components/LoginForm";
 import BlogForm from "./components/BlogForm";
 import Home from "./components/Home";
 import "./index.css";
+
 const App = () => {
+  const [userBlogs, setUserBlogs] = useState([]);
   const [blogs, setBlogs] = useState([]);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -20,10 +22,25 @@ const App = () => {
   });
 
   const blogRef = useRef();
-  useEffect(() => {
-    blogService.getAll().then((blogs) => setBlogs(blogs));
-  }, []);
 
+  useEffect(() => {
+    if (user !== null) {
+      blogService
+        .getUserBlogs(user.username)
+        .then((returnedUserBlogs) => {
+          setUserBlogs(returnedUserBlogs);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    blogService.getAll().then((returnedBlogs) => {
+      setBlogs(returnedBlogs).catch((err) => {
+        console.log(err);
+      });
+    }, []);
+  }, []);
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem("loggedUser");
     if (loggedUserJSON) {
@@ -143,8 +160,12 @@ const App = () => {
           />
         </Togglable>
         <br />
-        {blogs.map((blog) => (
-          <Blog key={blog.id} blog={blog} handleDeleteBtn={handleDeleteBtn} />
+        {userBlogs.map((blog) => (
+          <BlogBackend
+            key={blog.id}
+            blog={blog}
+            handleDeleteBtn={handleDeleteBtn}
+          />
         ))}
       </div>
     );

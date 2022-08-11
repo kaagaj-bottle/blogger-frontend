@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Blog.css";
+import "./BlogBackend.css";
 import Togglable from "./Togglable";
 import blogService from "../services/blogs";
 const Blog = ({ blog, handleDeleteBtn }) => {
