@@ -7,6 +7,7 @@ const BlogFrontend = ({ blog }) => {
         <div className="blog--title">{blog.title}</div>
         <div className="blog--content">{blog.url}</div>
         <div className="author--container">
+          <div className="likes">Like:{blog.likes}</div>
           <div className="blog--author">Author: {blog.author}</div>
         </div>
       </div>
