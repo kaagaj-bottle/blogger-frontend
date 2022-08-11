@@ -1,0 +1,30 @@
+.nav--container {
+  display: flex;
+  justify-content: center;
+  min-height: 10vh;
+}
+.navbar {
+  width: 100%;
+  color: white;
+  background-color: rgb(28, 28, 98);
+  font-family: monospace;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.5rem;
+  padding: 0 2rem 0 2rem;
+}
+
+.login--button {
+  display: inline-block;
+  background-color: rgb(143, 214, 37);
+  border: none;
+  border-radius: 0.4rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: white;
+  height: 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}

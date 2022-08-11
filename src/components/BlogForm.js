@@ -27,13 +27,16 @@ const BlogForm = ({
           onChange={handleBlogData}
         />
         <br />
-        <label htmlFor="url">url</label>
-        <input
-          id="url"
-          type="text"
+        <label htmlFor="content">content</label>
+        <br />
+        <textarea
+          id="content"
+          type="textarea"
           name="url"
           value={url}
           onChange={handleBlogData}
+          rows="5"
+          column="5"
         />
         <button type="submit">create</button>
       </form>

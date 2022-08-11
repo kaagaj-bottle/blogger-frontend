@@ -5,7 +5,8 @@ import loginService from "./services/login";
 import Togglable from "./components/Togglable";
 import LoginForm from "./components/LoginForm";
 import BlogForm from "./components/BlogForm";
-
+import Home from "./components/Home";
+import "./index.css";
 const App = () => {
   const [blogs, setBlogs] = useState([]);
   const [username, setUsername] = useState("");
@@ -98,14 +99,23 @@ const App = () => {
   const condRendering = () => {
     if (user === null) {
       return (
-        <Togglable buttonLabel0="log in" buttonLabel1="cancel">
-          <LoginForm
-            handleLogin={handleLogin}
+        <>
+          <Home
             handleChange={handleChange}
+            handleLogin={handleLogin}
             username={username}
             password={password}
+            blogs={blogs}
           />
-        </Togglable>
+          {/* <Togglable buttonLabel0="log in" buttonLabel1="cancel">
+            <LoginForm
+              handleLogin={handleLogin}
+              handleChange={handleChange}
+              username={username}
+              password={password}
+            />
+          </Togglable> */}
+        </>
       );
     }
 
