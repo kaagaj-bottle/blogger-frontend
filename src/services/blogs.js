@@ -16,7 +16,8 @@ const getAll = async () => {
 };
 
 const getUserBlogs = async (username) => {
-  const response = await axios.get(`${baseUrl} / user/${username}}`);
+  const response = await axios.get(`${baseUrl}/user/kaagaj`);
+  return response.data;
 };
 
 const create = async (blogObject) => {

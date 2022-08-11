@@ -7,6 +7,7 @@ import LoginForm from "./components/LoginForm";
 import BlogForm from "./components/BlogForm";
 import Home from "./components/Home";
 import "./index.css";
+import { nanoid } from "nanoid";
 
 const App = () => {
   const [userBlogs, setUserBlogs] = useState([]);
@@ -24,6 +25,16 @@ const App = () => {
   const blogRef = useRef();
 
   useEffect(() => {
+    blogService
+      .getAll()
+      .then((returnedBlogs) => {
+        setBlogs(returnedBlogs);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  useEffect(() => {
     if (user !== null) {
       blogService
         .getUserBlogs(user.username)
@@ -34,13 +45,8 @@ const App = () => {
           console.log(err);
         });
     }
+  }, [user]);
 
-    blogService.getAll().then((returnedBlogs) => {
-      setBlogs(returnedBlogs).catch((err) => {
-        console.log(err);
-      });
-    }, []);
-  }, []);
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem("loggedUser");
     if (loggedUserJSON) {
@@ -162,7 +168,7 @@ const App = () => {
         <br />
         {userBlogs.map((blog) => (
           <BlogBackend
-            key={blog.id}
+            key={nanoid()}
             blog={blog}
             handleDeleteBtn={handleDeleteBtn}
           />
@@ -170,6 +176,7 @@ const App = () => {
       </div>
     );
   };
+  console.log(user, userBlogs);
   return <>{condRendering()}</>;
 };
 
