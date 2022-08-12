@@ -180,7 +180,6 @@ const App = () => {
       </div>
     );
   };
-  console.log(user, userBlogs);
   return <>{condRendering()}</>;
 };
 
