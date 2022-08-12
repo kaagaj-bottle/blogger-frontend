@@ -34,6 +34,7 @@ const App = () => {
         console.log(err);
       });
   }, []);
+
   useEffect(() => {
     if (user !== null) {
       blogService
