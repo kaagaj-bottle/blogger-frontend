@@ -96,6 +96,7 @@ const App = () => {
     try {
       const returnedBlog = await blogService.create(blogObject);
       setBlogs((prevBlogs) => prevBlogs.concat(returnedBlog));
+      setUserBlogs((prevBlogs) => prevBlogs.concat(returnedBlog));
       setBlogObject({
         title: "",
         author: "",
@@ -111,7 +112,9 @@ const App = () => {
 
     try {
       const responseObj = await blogService.remove(id);
-
+      setUserBlogs((prevBlogs) => {
+        return prevBlogs.filter((blog) => blog.id !== id);
+      });
       setBlogs((prevBlogs) => {
         return prevBlogs.filter((blog) => blog.id !== id);
       });
