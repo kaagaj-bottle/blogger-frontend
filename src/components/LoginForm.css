@@ -1,3 +1,6 @@
+.container {
+  margin-top: 1rem;
+}
 .login--form {
   margin: auto;
   display: flex;

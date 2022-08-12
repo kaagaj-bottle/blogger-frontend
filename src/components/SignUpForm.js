@@ -1,6 +1,6 @@
 import React from "react";
 import "./SignUpForm.css";
-
+import signUpService from "../services/signUp";
 function SignUpForm({ handleSignUpButtonInLoginPage }) {
   const [user, setUser] = React.useState({
     name: "",
@@ -11,7 +11,6 @@ function SignUpForm({ handleSignUpButtonInLoginPage }) {
   function handleChange(ev) {
     const name = ev.target.name;
     const value = ev.target.value;
-
     setUser((prevUser) => {
       return { ...prevUser, [name]: value };
     });
@@ -20,7 +19,15 @@ function SignUpForm({ handleSignUpButtonInLoginPage }) {
   function handleSignUpButtonInSignUpPage(ev) {
     ev.preventDefault();
     if (user.fullName && user.username && user.password) {
-      handleSignUpButtonInLoginPage(ev);
+      signUpService
+        .signUp(user)
+        .then((user) => setUser(user))
+        .then((parameter) => {
+          handleSignUpButtonInLoginPage(ev);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
       window.alert("please enter all the data");
     }
